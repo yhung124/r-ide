@@ -7,7 +7,7 @@ MAINTAINER Raymond, yhung124@gmail.com
 COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep && \ 
+    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep autojump && \
     rm -rf /var/lib/apt/lists/*
 RUN adduser --disabled-password --gecos "" -shell /bin/bash --home /home/build --uid 500 build && \
     echo "build:vsdxos1234" | chpasswd && \

@@ -73,3 +73,7 @@ nnoremap qqa :qa!<CR>
 :imap <Esc>OR *
 :imap <Esc>Ol +
 :imap <Esc>OS -
+
+" Show space as .
+:set list
+:set listchars=tab:>-,trail:.,extends:>,precedes:<
