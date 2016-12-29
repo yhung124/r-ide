@@ -19,14 +19,18 @@ COPY vimrc /home/build/.vimrc
 COPY bashrc /home/build/bashrc
 RUN cat /home/build/bashrc >> /home/build/.bashrc && rm /home/build/bashrc
 
+USER build
+
 RUN git config --global diff.tool vimdiff
 RUN git config --global difftool.prompt false
 RUN git config --global alias.d difftool
 RUN git config --global user.email "yhung124@gmail.com"
 RUN git config --global user.name "Raymond"
 
+RUN wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+RUN wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o ~/.git-prompt.sh
+
 RUN chown -R build:build /home/build/ 
-USER build
 ENV HOME /home/build
 ENV PATH "$PATH:$HOME/bin:/usr/sbin"
 WORKDIR /home/build
