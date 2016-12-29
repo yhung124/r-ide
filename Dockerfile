@@ -21,6 +21,7 @@ RUN cat /home/build/bashrc >> /home/build/.bashrc && rm /home/build/bashrc
 
 USER build
 
+RUN git config --global push.default matching
 RUN git config --global diff.tool vimdiff
 RUN git config --global difftool.prompt false
 RUN git config --global alias.d difftool
