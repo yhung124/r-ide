@@ -27,6 +27,8 @@ RUN git config --global push.default matching
 RUN git config --global diff.tool vimdiff
 RUN git config --global difftool.prompt false
 RUN git config --global alias.d difftool
+RUN git config --global alias.st status
+RUN git config --global alias.ci commit
 RUN git config --global user.email "yhung124@gmail.com"
 RUN git config --global user.name "Raymond"
 
