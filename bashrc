@@ -1,6 +1,6 @@
 
 # Autojump
-. /usr/share/autojump/autojump.sh
+[[ -s /home/build/.autojump/etc/profile.d/autojump.sh ]] && source /home/build/.autojump/etc/profile.d/autojump.sh
 
 # Git
 . ~/.git-prompt.sh
@@ -13,3 +13,8 @@ export ACK_COLOR_FILENAME=yellow
 function c {
   builtin cd "$@" && ls -F
 }
+
+alias l='ls'
+alias la='ls -la'
+alias ll='ls -lh'
+alias ack='ack-grep'
