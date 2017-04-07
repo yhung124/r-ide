@@ -15,7 +15,6 @@ RUN adduser --disabled-password --gecos "" -shell /bin/bash --home /home/build -
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     mkdir -p /home/build/bin
 
-COPY vimrc /home/build/.vimrc
 COPY bashrc /home/build/bashrc
 RUN cat /home/build/bashrc >> /home/build/.bashrc && rm /home/build/bashrc
 RUN chown -R build:build /home/build/
@@ -29,6 +28,7 @@ RUN git config --global difftool.prompt false
 RUN git config --global alias.d difftool
 RUN git config --global alias.st status
 RUN git config --global alias.ci commit
+RUN git config --global alias.co checkout
 RUN git config --global user.email "yhung124@gmail.com"
 RUN git config --global user.name "Raymond"
 
@@ -37,8 +37,12 @@ RUN wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git
 
 RUN wget https://github.com/wting/autojump/archive/release-v22.5.0.tar.gz
 RUN tar -zxvf release-v22.5.0.tar.gz
-RUN cd ./autojump-release-v22.5.0&& ./install.py -f && cd ..
-RUN rm -rf ./autojump-release-v22.5.0
+RUN cd ./autojump-release-v22.5.0 && ./install.py -f && cd ..
+RUN rm -rf ./autojump-release-v22.5.0 && rm ./release-v22.5.0.tar.gz
+
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+RUN vim +PluginInstall +qall
+COPY vimrc /home/build/.vimrc
 
 ENV HOME /home/build
 ENV PATH "$PATH:$HOME/bin:/usr/sbin"
