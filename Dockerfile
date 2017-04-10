@@ -3,6 +3,9 @@
 FROM ubuntu:14.04.4
 MAINTAINER Raymond, yhung124@gmail.com
 
+ENV HOME /home/build
+ENV PATH "$PATH:$HOME/bin:/usr/sbin"
+
 # Install essential packages
 COPY sources.list /etc/apt/sources.list
 
@@ -17,7 +20,6 @@ RUN adduser --disabled-password --gecos "" -shell /bin/bash --home /home/build -
 
 COPY bashrc /home/build/bashrc
 RUN cat /home/build/bashrc >> /home/build/.bashrc && rm /home/build/bashrc
-RUN chown -R build:build /home/build/
 
 USER build
 WORKDIR /home/build
@@ -32,17 +34,20 @@ RUN git config --global alias.co checkout
 RUN git config --global user.email "yhung124@gmail.com"
 RUN git config --global user.name "Raymond"
 
-RUN wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O /home/build/.git-completion.bash
-RUN wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -O /home/build/.git-prompt.sh
+RUN wget https://raw.githubusercontent.com/git/git/f483a0aa2a4ca30f4fa76ea4aff621e59cdb882c/contrib/completion/git-completion.bash -O /home/build/.git-completion.bash
+RUN wget https://raw.githubusercontent.com/git/git/be099661f41e661eac8af2b4879a84a9eb9a7b9b/contrib/completion/git-prompt.sh -O /home/build/.git-prompt.sh
 
 RUN wget https://github.com/wting/autojump/archive/release-v22.5.0.tar.gz
 RUN tar -zxvf release-v22.5.0.tar.gz
 RUN cd ./autojump-release-v22.5.0 && ./install.py -f && cd ..
 RUN rm -rf ./autojump-release-v22.5.0 && rm ./release-v22.5.0.tar.gz
 
+# VIM configure
+COPY vimrc.vundle /home/build/.vimrc
+COPY vimrc /home/build/vimrc
+USER root
+RUN chown -R build:build /home/build/
+USER build
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 RUN vim +PluginInstall +qall
-COPY vimrc /home/build/.vimrc
-
-ENV HOME /home/build
-ENV PATH "$PATH:$HOME/bin:/usr/sbin"
+RUN cat /home/build/vimrc >> /home/build/.vimrc && rm -rf /home/build/vimrc 
