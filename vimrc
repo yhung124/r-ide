@@ -1,3 +1,4 @@
+set encoding=utf-8
 set shell=/bin/bash
 set t_Co=256
 
@@ -6,6 +7,18 @@ set pastetoggle=<F2>
 nnoremap <F2> :setlocal paste! paste?<CR>
 inoremap <F2> <C-O>:setlocal paste! paste?<CR>
 " }}}
+
+
+" NERDTree
+let NERDTreeShowHidden=1
+nnoremap <silent><F5> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Tagbar
+nnoremap <F8> :TagbarToggle<CR>
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
