@@ -35,6 +35,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'ervandew/supertab'
+Plugin 'stephpy/vim-yaml'
+Plugin 'ekalinin/Dockerfile.vim'
 
 " Snipmate
 Plugin 'marcweber/vim-addon-mw-utils'
