@@ -13,9 +13,11 @@ RUN apt-get update && \
     apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags python-pip bash-completion && \
     rm -rf /var/lib/apt/lists/*
 RUN pip install powerline-status
+
+RUN addgroup --gid 233 docker
 RUN adduser --disabled-password --gecos "" -shell /bin/bash --home /home/build --uid 500 build && \
     echo "build:os1234" | chpasswd && \
-    usermod -a -G sudo build && \
+    usermod -a -G sudo,docker build && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     mkdir -p /home/build/bin
 
