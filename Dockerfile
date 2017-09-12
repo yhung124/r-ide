@@ -10,9 +10,8 @@ ENV PATH "$PATH:$HOME/bin:/usr/sbin"
 COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags python-pip bash-completion && \
+    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags bash-completion && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install powerline-status
 
 RUN addgroup --gid 233 docker
 RUN adduser --disabled-password --gecos "" -shell /bin/bash --home /home/build --uid 500 build && \
@@ -56,4 +55,4 @@ RUN chown -R build:build /home/build/
 USER build
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 RUN vim +PluginInstall +qall
-RUN cat /home/build/vimrc >> /home/build/.vimrc && rm -rf /home/build/vimrc 
+RUN cat /home/build/vimrc >> /home/build/.vimrc && rm -rf /home/build/vimrc

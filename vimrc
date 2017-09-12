@@ -52,8 +52,21 @@ set cmdheight=1
 set cindent
 set wildmenu
 set showmode
+
+" Airline
 set laststatus=2
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='papercolor'
+
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+
+" Syctastic
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 colorscheme wombat256mod
 set cursorline

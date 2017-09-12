@@ -39,6 +39,9 @@ Plugin 'stephpy/vim-yaml'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
 
 " Snipmate
 Plugin 'marcweber/vim-addon-mw-utils'
