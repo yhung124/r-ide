@@ -10,10 +10,11 @@ ENV PATH "$PATH:$HOME/bin:/usr/sbin"
 COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags && \
+    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags python-pip && \
     rm -rf /var/lib/apt/lists/*
+RUN pip install powerline-status
 RUN adduser --disabled-password --gecos "" -shell /bin/bash --home /home/build --uid 500 build && \
-    echo "build:vsdxos1234" | chpasswd && \
+    echo "build:os1234" | chpasswd && \
     usermod -a -G sudo build && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     mkdir -p /home/build/bin

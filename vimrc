@@ -8,7 +8,6 @@ nnoremap <F2> :setlocal paste! paste?<CR>
 inoremap <F2> <C-O>:setlocal paste! paste?<CR>
 " }}}
 
-
 " NERDTree
 let NERDTreeShowHidden=1
 nnoremap <silent><F5> :NERDTreeToggle<CR>
@@ -54,8 +53,7 @@ set cindent
 set wildmenu
 set showmode
 set laststatus=2
-set statusline=[%F]\ %m%<%r%h%w\ [%{&fileencoding},%Y]%=
-set statusline+=[%v,%p%%]\ [Total\ line=%L]
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
 
 colorscheme wombat256mod
 set cursorline
