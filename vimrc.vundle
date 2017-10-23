@@ -42,6 +42,8 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'fisadev/fisa-vim-colorscheme'
 
 " Snipmate
 Plugin 'marcweber/vim-addon-mw-utils'

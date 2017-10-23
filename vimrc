@@ -67,14 +67,16 @@ let g:airline#extensions#hunks#non_zero_only = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
 
-colorscheme wombat256mod
+colorscheme fisa
 set cursorline
-hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=none
+hi CursorLine   cterm=NONE ctermbg=black ctermfg=none
 " Modify highlight word
 hi Search cterm=NONE ctermfg=white ctermbg=blue
-" Modify background of current line
-"hi CursorLine cterm=NONE ctermfg=NONE ctermbg=15
 
 "For quit
 nnoremap qa :q!<CR>
@@ -100,3 +102,18 @@ nnoremap qqa :qa!<CR>
 " Show space as .
 :set list
 :set listchars=tab:>-,trail:.,extends:>,precedes:<
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+" All these mappings work only for python code:
+" Go to definition
+let g:jedi#goto_command = ',d'
+" Find ocurrences
+let g:jedi#usages_command = ',o'
+" Find assignments
+let g:jedi#goto_assignments_command = ',a'
+" Go to definition in new tab
+nmap ,D :tab split<CR>:call jedi#goto()<CR>
