@@ -10,7 +10,7 @@ ENV PATH "$PATH:$HOME/bin:/usr/sbin"
 COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get install -y vim git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags bash-completion && \
+    apt-get install -y sudo vim-nox-py2 git make gawk libncurses5-dev wget python unzip patch ack-grep tree man ctags bash-completion && \
     rm -rf /var/lib/apt/lists/*
 
 RUN addgroup --gid 233 docker

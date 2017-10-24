@@ -16,11 +16,16 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
+"For tabs
+nnoremap <F6> :tabp<CR>
+nnoremap <F7> :tabn<CR>
+
 " Tagbar
 nnoremap <F8> :TagbarToggle<CR>
+let g:tagbar_sort = 0
+let g:tagbar_autofocus = 1
 
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
+" Jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
   endif
@@ -72,11 +77,12 @@ let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 
-colorscheme fisa
+colorscheme wombat256mod
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=black ctermfg=none
 " Modify highlight word
 hi Search cterm=NONE ctermfg=white ctermbg=blue
+let python_highlight_all=1
 
 "For quit
 nnoremap qa :q!<CR>
@@ -118,4 +124,30 @@ let g:jedi#goto_assignments_command = ',a'
 " Go to definition in new tab
 nmap ,D :tab split<CR>:call jedi#goto()<CR>
 
-let python_highlight_all=1
+" Neocomplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Enable omni completion.
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" Neosnippet Plugin key-mappings. Ctrl + k
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
