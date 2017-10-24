@@ -1,6 +1,6 @@
 # For persional ide
 
-FROM ubuntu:14.04.4
+FROM ubuntu:16.04
 MAINTAINER Raymond, yhung124@gmail.com
 
 ENV HOME /home/build
